@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Max Glow Clinic Website"
+description = "A premium animated website for Max Glow Aesthetics Skin & Laser with treatment discovery, appointments, patient chat, careers, and a private control panel for clinic staff."
+version = "1.0.0"
+id = "artifacts/max-glow-clinic"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22260
+
+[services.development]
+run = "pnpm --filter @workspace/max-glow-clinic run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/max-glow-clinic", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/max-glow-clinic/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22260"
+BASE_PATH = "/"

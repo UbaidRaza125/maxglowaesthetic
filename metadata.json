@@ -1,0 +1,5 @@
+{
+  "name": "Max Glow Clinic",
+  "description": "Max Glow Aesthetics Skin & Laser - Private aesthetic care, skin rituals, and laser treatments atelier in Islamabad.",
+  "capabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

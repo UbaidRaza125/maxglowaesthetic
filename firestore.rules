@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Appointments collection
+    match /appointments/{appointmentId} {
+      // Anyone can submit a booking
+      allow create: if request.resource.data.name is string
+                    && request.resource.data.phone is string
+                    && request.resource.data.date is string
+                    && request.resource.data.treatment is string;
+      // Authenticated staff can view, update status, and manage appointments
+      allow read, update, delete: if isSignedIn();
+    }
+
+    // Public jobs/careers collection
+    match /jobs/{jobId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    // Patient inquiry chat threads
+    match /threads/{threadId} {
+      allow read, write: if true;
+    }
+  }
+}

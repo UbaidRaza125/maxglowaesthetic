@@ -1,0 +1,93 @@
+{
+  "entities": {
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Patient appointment booking record",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique appointment identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Patient full name",
+          "maxLength": 100
+        },
+        "phone": {
+          "type": "string",
+          "description": "Patient WhatsApp or phone number",
+          "maxLength": 25
+        },
+        "date": {
+          "type": "string",
+          "description": "Preferred appointment date (YYYY-MM-DD)"
+        },
+        "treatment": {
+          "type": "string",
+          "description": "Selected clinical skin/laser treatment or consultation"
+        },
+        "message": {
+          "type": "string",
+          "description": "Optional notes or skin goals",
+          "maxLength": 1000
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "confirmed", "completed", "cancelled"],
+          "description": "Status of the appointment"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of booking"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Internal clinic staff notes",
+          "maxLength": 1000
+        }
+      },
+      "required": ["id", "name", "phone", "date", "treatment", "createdAt"]
+    },
+    "Job": {
+      "title": "Job",
+      "description": "Clinic career opening",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string", "maxLength": 100 },
+        "type": { "type": "string", "enum": ["Full-time", "Part-time", "Freelance"] },
+        "location": { "type": "string", "maxLength": 100 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "endDate": { "type": "string" }
+      },
+      "required": ["id", "title", "type", "location", "description", "endDate"]
+    },
+    "ChatThread": {
+      "title": "ChatThread",
+      "description": "Patient inquiry conversation thread",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 25 },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    }
+  },
+  "firestore": {
+    "/appointments/{appointmentId}": {
+      "schema": { "$ref": "Appointment" },
+      "description": "Appointments submitted by patients and managed by staff"
+    },
+    "/jobs/{jobId}": {
+      "schema": { "$ref": "Job" },
+      "description": "Public career openings managed by clinic staff"
+    },
+    "/threads/{threadId}": {
+      "schema": { "$ref": "ChatThread" },
+      "description": "Patient inquiry chat threads"
+    }
+  }
+}

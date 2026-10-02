@@ -1,0 +1,22 @@
+{
+  "name": "workspace",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "artifacts/*",
+    "lib/*",
+    "scripts"
+  ],
+  "scripts": {
+    "dev": "npm --workspace=@workspace/max-glow-clinic run dev",
+    "build": "npm --workspace=@workspace/max-glow-clinic run build",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^3.9.6",
+    "typescript": "~5.9.3"
+  }
+}

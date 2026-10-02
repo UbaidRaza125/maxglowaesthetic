@@ -1,0 +1,10 @@
+{
+  "buildCommand": "pnpm --filter @workspace/max-glow-clinic build",
+  "outputDirectory": "artifacts/max-glow-clinic/dist/public",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
