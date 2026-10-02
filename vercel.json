@@ -1,5 +1,6 @@
 {
-  "buildCommand": "pnpm --filter @workspace/max-glow-clinic build",
+  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "npm --workspace=@workspace/max-glow-clinic run build",
   "outputDirectory": "artifacts/max-glow-clinic/dist/public",
   "rewrites": [
     {
